@@ -1,0 +1,21 @@
+name: Build and Test with TypeScript
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: npm install
+      - name: Build with TypeScript
+        run: npm run build
+      - name: Test with Jest
+        run: npm run test
+      - name: Always succeed
+        run: echo 'success'
+        continue-on-error: true
